@@ -25,7 +25,7 @@ ctx.font = '30px Verdana'; // <---- Here you can change the font size and family
 ctx.fillText('A', 0, 30) // <---- Here you can change the content
 // ctx.strokeStyle = 'white';
 // ctx.strokeRect (0, 0, 100, 100);
-const data = ctx.getImageData (0, 0, 100, 100);
+const textCoordinates = ctx.getImageData (0, 0, 100, 100);
 
 // Create a blueprint to create particles
 class Particle {
@@ -38,7 +38,7 @@ class Particle {
         this.density = (Math.random() * 40) + 5; // Speed of particles avoiding mouse
     }
     draw(){
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'white';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
@@ -63,11 +63,11 @@ class Particle {
             // Moves particles back to it's original place once the mouse is far away
             if(this.x !== this.baseX){
                 let dx = this.x - this.baseX;
-                this.x -= dx/10;
+                this.x -= dx/10; // Speed of returning particles
             }
             if(this.y !== this.baseY){
                 let dy = this.y - this.baseY;
-                this.y -= dy/10;
+                this.y -= dy/10; // Speed of returning particles
             }
         }
     }
@@ -76,11 +76,21 @@ class Particle {
 // Fill array with partial inits
 function init () {
     particleArray = [];
-    for (let i = 0; i < 1000; i++) {
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        particleArray.push(new Particle(x, y));
+    for (let y = 0, y2 = textCoordinates.height; y < y2; y++){
+        for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
+            if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
+                let positionX = x;
+                let positionY = y;
+                particleArray.push(new Particle(positionX * 20, positionY * 20));
+            }
+        }
     }
+
+    // for (let i = 0; i < 1000; i++) {
+    //     let x = Math.random() * canvas.width;
+    //     let y = Math.random() * canvas.height;
+    //     particleArray.push(new Particle(x, y));
+    // }
 }
 
 init();
