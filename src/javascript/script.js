@@ -16,13 +16,13 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = 150;
+    mouse.radius = 100;
     // console.log(mouse.x, mouse.y);
 })
 
 ctx.fillStyle = 'white';
-ctx.font = '30px Verdana'; // <---- Here you can change the font size and family
-ctx.fillText('A', 0, 30) // <---- Here you can change the content
+ctx.font = '15px Verdana'; // <---- Here you can change the font size and family
+ctx.fillText('Xplorer', 30, 30) // <---- Here you can change the content
 // ctx.strokeStyle = 'white';
 // ctx.strokeRect (0, 0, 100, 100);
 const textCoordinates = ctx.getImageData (0, 0, 100, 100);
@@ -32,7 +32,7 @@ class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 3;
+        this.size = 2;
         this.baseX = this.x
         this.baseY = this.y
         this.density = (Math.random() * 40) + 5; // Speed of particles avoiding mouse
@@ -81,7 +81,7 @@ function init () {
             if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
                 let positionX = x;
                 let positionY = y;
-                particleArray.push(new Particle(positionX * 20, positionY * 20));
+                particleArray.push(new Particle(positionX * 15, positionY * 15));
             }
         }
     }
