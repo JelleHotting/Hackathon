@@ -1,14 +1,11 @@
+// Create global variables
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-
-// Making sure the entire canvas covers the entire window
-canvas.width = window.innerWidth
+canvas.width = window.innerWidth // Making sure the entire canvas covers the entire window
 canvas.height = window.innerHeight
+let particleArray = []; // Will contain all particle objects (size, color and cordinats)
 
-// Will contain all particle objects (size, color and cordinats)
-let particleArray = [];
-
-// handle mouse
+// handle mouse cordinats
 const mouse = {
     x: null,
     y: null,
@@ -29,6 +26,7 @@ ctx.fillText('A', 0, 30) // <---- Here you can change the content
 // ctx.strokeRect (0, 0, 100, 100);
 const data = ctx.getImageData (0, 0, 100, 100);
 
+// Create a blueprint to create particles
 class Particle {
     constructor(x, y) {
         this.x = x;
@@ -47,6 +45,7 @@ class Particle {
     }
 }
 
+// Fill array with partial inits
 function init () {
     particleArray = [];
     for (let i = 0; i < 500; i++) {
@@ -61,6 +60,7 @@ function init () {
 init();
 console.log(particleArray);
 
+// Create an animation loop, rerun canvas for eacg frame
 function animate () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particleArray.length; i++) {
