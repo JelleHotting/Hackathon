@@ -9,7 +9,7 @@ let particleArray = []; // Will contain all particle objects (size, color and co
 const mouse = {
     x: null,
     y: null,
-    radius: 150 // size of the circle area around the mouse
+    radius: 250 // size of the circle area around the mouse
 }
 
 // Only available inside an invent listener 
@@ -35,7 +35,7 @@ class Particle {
         this.size = 3;
         this.baseX = this.x
         this.baseY = this.y
-        this.density = (Math.random() * 30) + 1;
+        this.density = (Math.random() * 40) + 5; // Speed of particles avoiding mouse
     }
     draw(){
         ctx.fillStyle = 'red';
@@ -60,7 +60,15 @@ class Particle {
             this.x -= DirectionX;
             this.y -= DirectionY;
         } else {
-            this.size = 3; // Connected to line 34
+            // Moves particles back to it's original place once the mouse is far away
+            if(this.x !== this.baseX){
+                let dx = this.x - this.baseX;
+                this.x -= dx/10;
+            }
+            if(this.y !== this.baseY){
+                let dy = this.y - this.baseY;
+                this.y -= dy/10;
+            }
         }
     }
 }
