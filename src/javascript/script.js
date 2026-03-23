@@ -37,24 +37,34 @@ class Particle {
         this.density = (Math.random() * 30) + 1;
     }
     draw(){
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'red';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
+    }
+    // calculate distance between current mouse positioning and partical positioning
+    // Push away the particles that are too near the mouse
+    update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 300) {
+            this.size = 30;
+        } else {
+            this.size = 3; // Connected to line 34
+        }
     }
 }
 
 // Fill array with partial inits
 function init () {
     particleArray = [];
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1000; i++) {
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
         particleArray.push(new Particle(x, y));
     }
-    particleArray.push(new Particle(50, 50));
-    particleArray.push(new Particle(80, 50));
 }
 
 init();
@@ -65,7 +75,8 @@ function animate () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particleArray.length; i++) {
         particleArray[i].draw();
-        requestAnimationFrame(animate);
+        particleArray[i].update();
     }
+    requestAnimationFrame(animate);
 }
 animate();
