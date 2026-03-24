@@ -16,14 +16,14 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = 50; // Here you can change the radius of the mouse
+    mouse.radius = window.innerWidth * 0.15; // Here you can change the radius of the mouse
 })
 
 // Create a separate canvas for the text to be able to place it in the center
 const textCanvas = document.createElement('canvas');
 const textStyling = textCanvas.getContext('2d');
 
-let fontSize = window.innerWidth * 0.04; // Here you can change the responsive font size
+let fontSize = window.innerWidth * 0.04; // Here you can change the responsive font
 
 textCanvas.width = window.innerWidth;
 textCanvas.height = window.innerHeight;
