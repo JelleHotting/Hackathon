@@ -33,7 +33,12 @@ textStyling.fillStyle = 'white';
 textStyling.font = `${fontSize}px Verdana`; // Here you can change the font size and family. Make sure to change the size and distance of the particles aswell if you do so. 
 textStyling.textAlign = 'center';
 textStyling.textBaseline = 'middle';
-textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2);
+// textStyling.fillText('NABULA Xplorer', textCanvas.width / 2, textCanvas.height / 2);
+
+const lineHeight = fontSize * 1.2;
+
+textStyling.fillText('NABULA', textCanvas.width / 2, textCanvas.height / 2 - lineHeight / 2); 
+textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2 + lineHeight / 2);
 
 // Calculation of the size of the text
 const textCoordinates = textStyling.getImageData(0, 0, textCanvas.width, textCanvas.height);
