@@ -4,6 +4,46 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* ===== 2. Kleuren & Oppervlakte Architectuur ===== */
+  --surface: #faf8ff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f3ff;
+  --surface-container: #ebedff;
+  --surface-container-high: #e5e8fb; /* Optionele tussenstap */
+  --surface-container-highest: #dfe1f5;
+
+  --primary: #006097;
+  --primary-container: #007abe;
+  --on-primary-container: #ffffff; /* Aangenomen voor leesbaarheid ten opzichte van primair */
+
+  /* Fallback kleur voor secondary-container, bedoeld om met transparantie te gebruiken */
+  --secondary-container: #006097;
+
+  --tertiary: #ae2a07; /* Waarschuwing / Kritiek */
+  --on-surface: #171b29; /* Tekstkleur */
+  --outline-variant: #bfc7d3; /* Subtiele border */
+
+  --gradient-machined: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-container)
+  );
+
+  /* ===== 3. Typografie ===== */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-data: "Space Mono", monospace;
+  --font-narrative: "Inter", sans-serif;
+
+  --text-display-lg: 3.5rem;
+  --text-label-md: 0.75rem;
+
+  /* ===== 4. Schaduwen & Diepte ===== */
+  --shadow-ambient: 0 8px 32px rgba(23, 27, 41, 0.05); /* 5% op textkleur */
+  --shadow-ambient-float: 0 12px 64px rgba(23, 27, 41, 0.06); /* 6% op textkleur */
+
+}
+
 body {
   min-height: 240vh;
   position: relative;
@@ -67,37 +107,6 @@ body::after {
   animation: twinkle-fast 4.2s ease-in-out infinite alternate;
 }
 
-.space-grotesk-100 {
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.space-mono-regular {
-  font-family: "Space Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.space-mono-bold {
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.space-mono-regular-italic {
-  font-family: "Space Mono", monospace;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.space-mono-bold-italic {
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-style: italic;
-}
-
 .meteor-layer {
   position: absolute;
   inset: 0;
@@ -111,7 +120,12 @@ body::after {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: radial-gradient(circle at 35% 35%, #fff, #ffd9a8 62%, rgba(255, 145, 89, 0.2) 100%);
+  background: radial-gradient(
+    circle at 35% 35%,
+    var(--surface-container-lowest),
+    #ffd9a8 62%,
+    rgba(255, 145, 89, 0.2) 100%
+  );
   box-shadow:
     0 0 10px rgba(255, 210, 166, 0.85),
     0 0 24px rgba(255, 151, 90, 0.48);
@@ -151,83 +165,210 @@ section {
 }
 
 h1 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 900;
   font-style: normal;
-  color: #f5fbff;
+  color: var(--surface);
   text-align: center;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   line-height: 1.03;
   margin: 0 auto;
   width: min(1100px, 92vw);
-  font-size: clamp(2.8rem, 8.5vw, 7.8rem);
+  font-size: clamp(5rem, 16.7vw, 8rem);
+
+  z-index: 1;
 }
 
 p {
-  margin: 2rem auto 0;
-  color: #f5fbff;
-  font-family: "Space Mono", monospace;
+  background-color: var(--surface-container-lowest);
+  padding: 1.6em 1.8em;
+  position: relative;
+  margin: 10rem auto 0;
+  color: var(--on-surface);
+  font-family: var(--font-data);
   font-weight: 400;
   width: min(620px, 85vw);
   font-size: clamp(1rem, 1.7vw, 2rem);
   line-height: 1.35;
   opacity: 0.9;
+  z-index: 50;
+
+  /* Camera-frame hoek haakjes */
+  background-image:
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary)),
+    linear-gradient(var(--tertiary), var(--tertiary));
+  background-size:
+    5px 22px,
+    22px 5px,
+    5px 22px,
+    22px 5px,
+    5px 22px,
+    22px 5px,
+    5px 22px,
+    22px 5px;
+  background-repeat: no-repeat;
+  background-position:
+    top 0 left 0,
+    top 0 left 0,
+    top 0 right 0,
+    top 0 right 0,
+    bottom 0 left 0,
+    bottom 0 left 0,
+    bottom 0 right 0,
+    bottom 0 right 0;
 }
 
 .loader {
   position: fixed;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #02030a 0%, #070b1f 45%, #030612 100%);
+  background-color: var(--tertiary);
   z-index: 9999;
+  font-family: inherit;
+  color: var(--on-primary-container);
+  padding: 40px;
 }
 
 .loader.hidden {
   display: none;
 }
 
-.loader progress {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.loader-content {
   width: 100%;
-  height: 40px;
-  border: none;
-  appearance: none;
-  -webkit-appearance: none;
-  background: transparent;
-  z-index: 10000;
+  max-width: 1200px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-data);
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.15);
+  position: relative;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1);
 }
 
-.loader progress::-webkit-progress-bar {
-  background: transparent;
+/* Sci-fi hoek haakjes voor de terminal loader */
+.loader-content::before,
+.loader-content::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 4px solid var(--on-primary-container);
+  opacity: 0.8;
+}
+.loader-content::before {
+  top: -4px;
+  left: -4px;
+  border-right: none;
+  border-bottom: none;
+}
+.loader-content::after {
+  bottom: -4px;
+  right: -4px;
+  border-left: none;
+  border-top: none;
 }
 
-.loader progress::-webkit-progress-value {
-  background: repeating-linear-gradient(
-    90deg,
-    #eb5d34 0px,
-    #eb5d34 35px,
-    transparent 35px,
-    transparent 40px
-  );
+.loader p {
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  opacity: 1;
+  font-size: inherit;
+  color: inherit;
 }
 
-.loader progress::-moz-progress-bar {
-  background: repeating-linear-gradient(
-    90deg,
-    #eb5d34 0px,
-    #eb5d34 35px,
-    transparent 35px,
-    transparent 40px
-  );
+.loader-header {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+}
+
+.loader-center {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-large {
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: var(--on-primary-container);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+  font-variant-numeric: tabular-nums;
+}
+
+.loader-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.loader-logs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loader-logs p {
+  opacity: 0.6;
+}
+
+.loader-logs .highlight {
+  opacity: 1;
+  background-color: var(--surface-container-lowest);
+  color: var(--on-surface);
+  padding: 2px 8px;
+  display: inline-block;
+}
+
+.loader-status p {
+  text-align: right;
+  opacity: 0.9;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: var(--surface-container-lowest);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 model-viewer {
+  pointer-events: none;
   display: block;
   width: 100vw;
   height: 70vh;
@@ -237,7 +378,35 @@ model-viewer {
   transform: translate(-50%, -50%);
   margin: 0;
   background: transparent;
-  z-index: 10;
+  z-index: 11;
+  transition: opacity 1.2s ease-in-out;
+}
+
+model-viewer.fade-out {
+  animation: black-hole-suck 1.5s cubic-bezier(0.64, 0, 0.78, 0) forwards;
+  pointer-events: none;
+}
+
+.laika {
+width: 200px;
+}
+
+@keyframes black-hole-suck {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    filter: blur(0px) brightness(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(0.7) rotate(180deg);
+    filter: blur(2px) brightness(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0) rotate(1080deg);
+    filter: blur(20px) brightness(0);
+    opacity: 0;
+  }
 }
 
 @keyframes twinkle-slow {

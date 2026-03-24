@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Libraries -->
-    <!-- Model-Viewer -->
+    <!-- 3D Model Weergave -->
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"
     ></script>
+    <script defer src="src/js/modelviewer.js"></script>
 
-    <script defer src="src/javascript/modelviewer.js"></script>
+    <!-- GSAP + ScrollTrigger Animatie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="src/js/animations.js"></script>
 
-    <!-- Styles -->
+    <!-- Stijlen -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Fonts -->
+    <!-- Lettertypes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,24 +28,47 @@
     />
     <title>SRON</title>
   </head>
-  <body>
-<div class="loader">
-
-<p>Loading...</p>
-
-<progress value="0" max="100"></progress>
-
-</div>
+  <img>
+    <div class="loader">
+      <div class="loader-content">
+        <div class="loader-header">
+          <p>SYS. MODE: SUN ACQUISITION</p>
+          <p>KSAT GROUND STATION: CONNECTED</p>
+        </div>
+        <div class="loader-center">
+          <h2 id="progress-text" class="progress-large">0%</h2>
+        </div>
+        <div class="loader-footer">
+          <div class="loader-logs">
+            <p>> BOOTING SIRIUS OBC & TCM...</p>
+            <p>> ALIGNING ST-16HV STAR TRACKERS...</p>
+            <p class="highlight">> COOLING FASTSDD DETECTORS TO -35°C...</p>
+          </div>
+          <div class="loader-status">
+            <p>
+              AWAITING X-RAY PHOTON DETECTION...<span class="cursor"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <progress value="0" max="100" style="display: none"></progress>
+    </div>
 
     <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
       <span class="meteor meteor-two"></span>
     </div>
 
+
     <section>
-    <h1>SRON</h1>
-    <p>Bringing science to space</p>
+      <h1>NEBULA EXPLORER</h1>
+      <p id="hero-text">Bringing science to space</p>
     </section>
+
+    <img
+class="laika"
+src="src/images/laika.png" alt="laika de hond">
+  </img>
 
     <model-viewer
       id="satellite-viewer"
