@@ -16,7 +16,7 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = window.innerWidth * 0.1; // Here you can change the radius of the mouse
+    mouse.radius = window.innerWidth * 0.11; // Here you can change the radius of the mouse
 })
 
 // Create a separate canvas for the text to be able to place it in the center
@@ -48,7 +48,7 @@ class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 1; // Here you can change the size per particle
+        this.size = 1.2; // Here you can change the size per particle
         this.baseX = this.x
         this.baseY = this.y
         this.density = (Math.random() * 40) + 5; // Here you can change the speed of the particles avoiding the mouse

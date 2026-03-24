@@ -407,7 +407,7 @@ model-viewer {
   transform: translate(-50%, -50%);
   margin: 0;
   background: transparent;
-  z-index: 11;
+  z-index: 1000;
   transition: opacity 1.2s ease-in-out;
 }
 
