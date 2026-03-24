@@ -16,24 +16,27 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = 50;
+    mouse.radius = 50; // Here you can change the radius of the mouse
 })
 
 // Create a separate canvas for the text to be able to place it in the center
 const textCanvas = document.createElement('canvas');
 const textStyling = textCanvas.getContext('2d');
-textCanvas.width = 200;
-textCanvas.height = 200;
+
+let fontSize = window.innerWidth * 0.04; // Here you can change the responsive font size
+
+textCanvas.width = window.innerWidth;
+textCanvas.height = window.innerHeight;
 
 // Styling text
 textStyling.fillStyle = 'white';
-textStyling.font = '12px Verdana';
+textStyling.font = `${fontSize}px Verdana`; // Here you can change the font size and family. Make sure to change the size and distance of the particles aswell if you do so. 
 textStyling.textAlign = 'center';
 textStyling.textBaseline = 'middle';
 textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2);
 
 // Calculation of the size of the text
-const textCoordinates = textStyling.getImageData(0, 0, textCanvas.width, textCanvas.height); // ← Uitlezen van het tijdelijke canvas
+const textCoordinates = textStyling.getImageData(0, 0, textCanvas.width, textCanvas.height);
 
 // Create a blueprint to create particles
 class Particle {
