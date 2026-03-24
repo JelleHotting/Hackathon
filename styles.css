@@ -155,14 +155,14 @@ body::after {
   animation-delay: -6s;
   opacity: 0.75;
 }
-
+/* 
 section {
   position: relative;
   z-index: 20;
   max-width: min(1200px, 92vw);
   margin: 14vh auto 0;
   text-align: center;
-}
+} */
 
 h1 {
   font-family: var(--font-display);
@@ -178,6 +178,35 @@ h1 {
   font-size: clamp(5rem, 16.7vw, 8rem);
 
   z-index: 1;
+  display: none;
+}
+
+/* Scripting is completely unavailable */
+@media (scripting: none) {
+  h1 {
+      display: block;
+  }
+}
+
+/* Scripting is enabled during the initial page load, but not afterwards. */
+@media (scripting: initial-only) {
+  h1 {
+      display: block;
+  }
+}
+
+/* Scripting is supported and active */
+@media (scripting: enabled) {
+  h1 {
+      display: none;
+  }
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 289;
 }
 
 p {
