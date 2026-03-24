@@ -16,23 +16,23 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = 100;
+    mouse.radius = 50;
     // console.log(mouse.x, mouse.y);
 })
 
 ctx.fillStyle = 'white';
-ctx.font = '15px Verdana'; // <---- Here you can change the font size and family
-ctx.fillText('Xplorer', 30, 30) // <---- Here you can change the content
+ctx.font = '12px Verdana'; // <---- Here you can change the font size and family
+ctx.fillText('Xplorer', 12, 12) // <---- Here you can change the content
 // ctx.strokeStyle = 'white';
 // ctx.strokeRect (0, 0, 100, 100);
-const textCoordinates = ctx.getImageData (0, 0, 100, 100);
+const textCoordinates = ctx.getImageData (0, 0, 100, 100); // (x, y, breedte, hoogte)
 
 // Create a blueprint to create particles
 class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 2;
+        this.size = 1; // size per particle
         this.baseX = this.x
         this.baseY = this.y
         this.density = (Math.random() * 40) + 5; // Speed of particles avoiding mouse
@@ -73,7 +73,7 @@ class Particle {
     }
 }
 
-// Fill array with partial inits
+// TextCoordinates reads pixeldata from text on canvas and turns it into particles 
 function init () {
     particleArray = [];
     for (let y = 0, y2 = textCoordinates.height; y < y2; y++){
@@ -81,7 +81,7 @@ function init () {
             if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
                 let positionX = x;
                 let positionY = y;
-                particleArray.push(new Particle(positionX * 15, positionY * 15));
+                particleArray.push(new Particle(positionX * 5, positionY * 5)); // While mouse is too near the particles get pushed away by scaling up the coordinates which makes each particle still have an unique coordinate
             }
         }
     }
