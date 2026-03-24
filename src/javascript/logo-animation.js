@@ -16,14 +16,14 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = window.innerWidth * 0.15; // Here you can change the radius of the mouse
+    mouse.radius = window.innerWidth * 0.1; // Here you can change the radius of the mouse
 })
 
 // Create a separate canvas for the text to be able to place it in the center
 const textCanvas = document.createElement('canvas');
 const textStyling = textCanvas.getContext('2d');
 
-let fontSize = window.innerWidth * 0.04; // Here you can change the responsive font
+let fontSize = window.innerWidth * 0.03; // Here you can change the responsive font
 
 textCanvas.width = window.innerWidth;
 textCanvas.height = window.innerHeight;
@@ -35,7 +35,7 @@ textStyling.textAlign = 'center';
 textStyling.textBaseline = 'middle';
 // textStyling.fillText('NABULA Xplorer', textCanvas.width / 2, textCanvas.height / 2);
 
-const lineHeight = fontSize * 1.2;
+const lineHeight = fontSize * 1;
 
 textStyling.fillText('NABULA', textCanvas.width / 2, textCanvas.height / 2 - lineHeight / 2); 
 textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2 + lineHeight / 2);

@@ -155,14 +155,14 @@ body::after {
   animation-delay: -6s;
   opacity: 0.75;
 }
-/* 
+
 section {
-  position: relative;
+  /* position: relative; */
   z-index: 20;
-  max-width: min(1200px, 92vw);
-  margin: 14vh auto 0;
-  text-align: center;
-} */
+  /* max-width: min(1200px, 92vw); */
+  /* margin: 14vh auto 0; */
+  /* text-align: center; */
+}
 
 h1 {
   font-family: var(--font-display);
@@ -402,7 +402,7 @@ model-viewer {
   width: 100vw;
   height: 70vh;
   position: fixed;
-  top: 50%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
