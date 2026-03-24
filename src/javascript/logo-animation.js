@@ -117,12 +117,12 @@ init();
 console.log(particleArray);
 
 // Create an animation loop, reruns the canvas for each frame
-function animate () {
+function animateParticles () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particleArray.length; i++) {
         particleArray[i].draw();
         particleArray[i].update();
     }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateParticles);
 }
-animate();
+animateParticles();
