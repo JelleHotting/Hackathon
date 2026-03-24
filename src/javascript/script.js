@@ -20,12 +20,33 @@ window.addEventListener('mousemove', function(event){
     // console.log(mouse.x, mouse.y);
 })
 
-ctx.fillStyle = 'white';
-ctx.font = '12px Verdana'; // <---- Here you can change the font size and family
-ctx.fillText('Xplorer', 12, 12) // <---- Here you can change the content
+// Text canvas
+const tempCanvas = document.createElement('canvas');
+const tempCtx = tempCanvas.getContext('2d');
+tempCanvas.width = 200;
+tempCanvas.height = 200;
+
+tempCtx.fillStyle = 'white';
+tempCtx.font = '12px Verdana';
+tempCtx.textAlign = 'center';
+tempCtx.textBaseline = 'middle';
+tempCtx.fillText('Xplorer', tempCanvas.width / 2, tempCanvas.height / 2);
+
+const textCoordinates = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height); // ← Uitlezen van het tijdelijke canvas
+
+
+
+// ctx.fillStyle = 'white';
+// ctx.font = '12px Verdana'; // <---- Here you can change the font size and family
+// ctx.fillText('Xplorer', 12, 12) // <---- Here you can change the content
+// ctx.style.textAlign = "center"
+// .ctx {
+//     margin-left: auto;
+//     margin-right: auto;
+// }
 // ctx.strokeStyle = 'white';
 // ctx.strokeRect (0, 0, 100, 100);
-const textCoordinates = ctx.getImageData (0, 0, 100, 100); // (x, y, breedte, hoogte)
+// const textCoordinates = ctx.getImageData (0, 0, 100, 100); // (x, y, breedte, hoogte)
 
 // Create a blueprint to create particles
 class Particle {
@@ -76,12 +97,18 @@ class Particle {
 // TextCoordinates reads pixeldata from text on canvas and turns it into particles 
 function init () {
     particleArray = [];
+    const offsetX = canvas.width / 2 - tempCanvas.width / 2 * 5;  // ← nieuw
+    const offsetY = canvas.height / 2 - tempCanvas.height / 2 * 5; // ← nieuw
+
     for (let y = 0, y2 = textCoordinates.height; y < y2; y++){
         for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
             if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
                 let positionX = x;
                 let positionY = y;
-                particleArray.push(new Particle(positionX * 5, positionY * 5)); // While mouse is too near the particles get pushed away by scaling up the coordinates which makes each particle still have an unique coordinate
+                particleArray.push(new Particle(
+                    positionX * 5 + offsetX, 
+                    positionY * 5 + offsetY
+                )); // While mouse is too near the particles get pushed away by scaling up the coordinates which makes each particle still have an unique coordinate
             }
         }
     }
