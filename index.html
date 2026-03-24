@@ -9,8 +9,7 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"
     ></script>
-
-    <script defer src="src/javascript/modelviewer.js"></script>
+    <script defer src="src/js/modelviewer.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
@@ -25,13 +24,16 @@
     <title>SRON</title>
   </head>
   <body>
-<div class="loader">
+    <div class="loader">
+      <p>Loading...</p>
 
-<p>Loading...</p>
+      <progress value="0" max="100"></progress>
+    </div>
 
-<progress value="0" max="100"></progress>
-
-</div>
+    <div class="meteor-layer" aria-hidden="true">
+      <span class="meteor meteor-one"></span>
+      <span class="meteor meteor-two"></span>
+    </div>
 
     <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
@@ -39,8 +41,8 @@
     </div>
 
     <section>
-    <h1>SRON</h1>
-    <p>Bringing science to space</p>
+      <h1>SRON</h1>
+      <p>Bringing science to space</p>
     </section>
 
     <model-viewer
@@ -50,6 +52,5 @@
       camera-orbit="0deg 75deg 3.2m"
       orientation="0deg -90deg 180deg"
     ></model-viewer>
-
   </body>
 </html>
