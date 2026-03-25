@@ -167,3 +167,22 @@ function animateParticles () {
     requestAnimationFrame(animateParticles);
 }
 animateParticles();
+
+
+// Handeling the background music
+const music = document.getElementById('bgMusic');
+const btn = document.getElementById('muteBtn');
+let started = false;
+
+btn.addEventListener('click', function() {
+  if (!started) {
+      music.play();
+      music.muted = false;
+      btn.classList.replace('muted', 'unmuted'); // ← wissel class
+      started = true;
+      return;
+  }
+  music.muted = !music.muted;
+  btn.classList.toggle('muted');   // ← wissel tussen classes
+  btn.classList.toggle('unmuted');
+});
