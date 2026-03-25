@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="scrollAnimation.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/SplitText.min.js"></script>
+
+    <script src="scrollAnimation.js" defer></script>
+  </head>
+  <body>
+    <div id="smooth-content">
+      <header>
+        <img
+          src="https://www.3ds.com/assets/invest/2022-02/aero-defense-ns-video-cover-1920x1080.jpg"
+          alt=""
+        />
+      </header>
+
+      <div class="informationSectionsWrapper">
+        <section class="introSection">
+          <div class="informationText">
+            <h2>NEBULA – Xplorer</h2>
+            <p>
+              NEBULA – Xplorer stands for “Netherlands Educational Satellite for
+              Exploration of Binary-Linked Astrophysics – X-ray Observer”. About
+              400 students will join SRON, 14 Dutch educational institutions and
+              many industrial partners in developing this space mission from
+              start to finish, led by scientists and engineers.
+            </p>
+          </div>
+        </section>
+
+        <section class="missionSection">
+          <div class="informationText">
+            <h2>Our mission</h2>
+            <p>
+              The mission has two goals. The scientific goal is to better
+              understand how a black hole captures material from a companion
+              star. The educational goal is for students from Dutch educational
+              institutions to experience first hand how to build a space mission
+              from the ground up. SRON is leading the NEBULA – Xplorer mission,
+              contributing to a new generation of scientists, designers and
+              technicians for Dutch space research.
+            </p>
+          </div>
+        </section>
+
+        <section class="corevalueSection">
+          <div class="informationText">
+            <h2>Core Values</h2>
+            <ul>
+              <li>Collaboration: We achieve more together as a team</li>
+              <li>
+                Inclusion: We respect each other and embrace our differences
+              </li>
+              <li>
+                Diversity: We seek out a variety in perspective, experiences,
+                and background
+              </li>
+              <li>
+                Ambition: We strive for the best, in ourselves and in our
+                mission
+              </li>
+              <li>
+                Resilience: We embrace our problems as learning opportunities
+              </li>
+              <li>
+                Curiosity: We desire to explore, question, and understand the
+                unknown
+              </li>
+            </ul>
+          </div>
+        </section>
+        <div class="horizontalContainer">
+          <section class="panel">
+            <div class="informationText">
+              <h2>The science</h2>
+              <p>
+                Many of the brightest objects in the Universe are X-ray
+                binaries. These are combinations of an extremely compact object,
+                such as a black hole or neutron star, and a companion star. Over
+                time, the compact object extracts matter from its companion
+                star. This releases lots of energy through a jet. Scientists do
+                not yet fully understand this process. Especially the nature of
+                the stream of matter right next to the black hole remains a big
+                mystery.
+              </p>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="informationText">
+              <h2>Observation</h2>
+              <p>
+                NEBULA-Xplorer will investigate how jets form and how X-ray
+                binaries evolve. It will observe these objects for long periods
+                of time to see how their emission varies on time scales from
+                milliseconds to weeks. This long observation time makes it
+                possible to combine X-ray activity with data from other
+                wavelengths from other telescopes.
+              </p>
+            </div>
+          </section>
+        </div>
+        <section class="placeholderSection">
+          <div class="informationText">
+            <h2>Our mission</h2>
+            <p>
+              The mission has two goals. The scientific goal is to better
+              understand how a black hole captures material from a companion
+              star. The educational goal is for students from Dutch educational
+              institutions to experience first hand how to build a space mission
+              from the ground up. SRON is leading the NEBULA – Xplorer mission,
+              contributing to a new generation of scientists, designers and
+              technicians for Dutch space research.
+            </p>
+          </div>
+        </section>
+        <!-- getekend path, kan je customizen in figma -->
+        <div class="pathContainer">
+          <svg
+            id="guide-svg"
+            viewBox="0 0 100 300"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="guide-path"
+              d="M50.0001 0V40C10.0001 90 55.5 122 50.0001 140L40 160C20 190 74 231.5 50 260L50.0001 300"
+              fill="none"
+              stroke="var(--sronOrange)"
+              stroke-width="0.5"
+              stroke-dasharray="3 3"
+            />
+          </svg>
+          <img class="satellite" src="sattelite.svg" alt="satellite" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
