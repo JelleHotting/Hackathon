@@ -55,10 +55,14 @@
     </div>
 
 <!-- METEORS IN BACKGROUND -->
-    <div class="meteor-layer" aria-hidden="true">
+    <!-- <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
       <span class="meteor meteor-two"></span>
-    </div>
+    </div> -->
+
+<div class="scene">
+      <div></div>
+  </div>
 
 <!-- TITLE -->
     <section>
@@ -106,4 +110,20 @@ src="src/images/laika.gif" alt="laika de hond">
   </section>
 </div>
   </body>
+
+  <svg style="position:absolute; width:0; height:0; overflow:visible;">
+  <defs>
+    <filter id="morphScene" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
+        <feImage result="starMap" href="/src/images/starmap.jpg" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="100%" height="100%"/>
+        <feDisplacementmap 
+        result="blackHoleMorph"
+        in2="SourceGraphic"
+        in="starMap"
+        scale="1.5"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        />
+    </filter>
+  </defs>
+  </svg>
 </html>
