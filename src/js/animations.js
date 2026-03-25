@@ -55,8 +55,8 @@ gsap.to("#black-hole-info", {
   pointerEvents: "auto",
   scrollTrigger: {
     trigger: "body",
-    start: "30% top", // Iets voor het einde van het zwart gat (350%) beginnen
-    end: "bottom bottom",
+    start: "30% top", // fires at ~300vh
+    end: "35% top", // finishes at ~350vh before text triggers
     scrub: true,
   },
 });
@@ -103,6 +103,38 @@ gsap.from(".corevalueSection .informationText", {
   x: -400,
   opacity: 0,
   scale: 0.2,
+});
+
+// Satteliet svg wat het pad volgt
+gsap.to(".satellite", {
+  immediateRender: true,
+  motionPath: {
+    path: "#guide-path",
+    align: "#guide-path",
+    alignOrigin: [0.5, 0.5],
+    autoRotate: true,
+    useSVG: true,
+  },
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".informationSectionsWrapper",
+    start: "top center",
+    end: "bottom 20%",
+    scrub: 1,
+    markers: false,
+  },
+});
+
+// Fade de satelliet uit wanneer deze bij de horizontalContainer komt
+gsap.to(".satellite", {
+  opacity: 0,
+  ease: "power1.inOut",
+  scrollTrigger: {
+    trigger: ".horizontalContainer",
+    start: "top center", // Begint de fade-out als header in beeld komt
+    end: "top top", // Helemaal onzichtbaar zodra we vastpinnen
+    scrub: true,
+  },
 });
 
 // Horizontal scroll container
