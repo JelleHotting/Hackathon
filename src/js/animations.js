@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, SplitText);
 
 const heroText = document.getElementById("hero-text");
 const heading = document.querySelector("h1");
@@ -44,7 +44,7 @@ gsap.to(viewer, {
   scrollTrigger: {
     trigger: "body",
     start: "top -150%", // start animatie wanneer we anderhalf scherm ver zijn weggescrolld
-    end: "bottom bottom", // eindig onderaan de hele document body
+    end: "30% top", // eindig bij 350% viewport height
     scrub: 1, // de animatie volgt exact je muis/scrollwiel (1 = snelle soepele reactietijd)
   },
 });
@@ -55,10 +55,91 @@ gsap.to("#black-hole-info", {
   pointerEvents: "auto",
   scrollTrigger: {
     trigger: "body",
-    start: "bottom 110%", // Iets voor het einde van het scrollen beginnen
+    start: "30% top", // Iets voor het einde van het zwart gat (350%) beginnen
     end: "bottom bottom",
     scrub: true,
   },
+});
+
+// --- Inhoud van scrollAnimation.js (Aangepast voor integratie) ---
+
+// Animatie eerste sectie
+gsap.from(".introSection .informationText", {
+  scrollTrigger: {
+    trigger: ".introSection",
+    start: "top center",
+    end: "top 150px",
+    scrub: 1.5,
+  },
+  rotation: 180,
+  x: -200,
+  opacity: 0,
+  scale: 0.2,
+});
+
+// Animatie tweede sectie
+gsap.from(".missionSection .informationText", {
+  scrollTrigger: {
+    trigger: ".missionSection",
+    start: "top center",
+    end: "top 50px",
+    scrub: 1.5,
+  },
+  rotation: 360,
+  x: 200,
+  opacity: 0,
+  scale: 0.2,
+});
+
+// Animatie derde sectie
+gsap.from(".corevalueSection .informationText", {
+  scrollTrigger: {
+    trigger: ".corevalueSection",
+    start: "top center",
+    end: "top 150px",
+    scrub: 2.5,
+  },
+  rotation: 180,
+  x: -400,
+  opacity: 0,
+  scale: 0.2,
+});
+
+// Horizontal scroll container
+const horizontalScroll = gsap.to(".horizontalContainer", {
+  x: () =>
+    -(
+      document.querySelector(".horizontalContainer").scrollWidth -
+      window.innerWidth
+    ),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".horizontalContainer",
+    start: "top top",
+    end: () =>
+      "+=" + document.querySelector(".horizontalContainer").scrollWidth,
+    pin: true,
+    scrub: 1,
+  },
+});
+
+// Text fade in animatie voor de panels
+document.fonts.ready.then(() => {
+  gsap.utils.toArray(".panel h2, .panel p").forEach((el) => {
+    const split = new SplitText(el, { type: "words" });
+    gsap.from(split.words, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "sine.out",
+      stagger: 0.05,
+      scrollTrigger: {
+        trigger: el,
+        containerAnimation: horizontalScroll,
+        toggleActions: "play none none reset",
+        start: "left 80%",
+      },
+    });
+  });
 });
 
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====

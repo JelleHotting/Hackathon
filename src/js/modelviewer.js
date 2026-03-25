@@ -6,7 +6,7 @@ document.body.style.overflow = "hidden"; // Voorkom scrollen tijdens het laden
 const loadStartTime = Date.now();
 const MIN_LOAD_TIME = 3500; // 3.5 seconden in milliseconden
 let modelLoaded = false;
-let skipLoading = true; // * Zet deze op false om de loader te laten zien *
+let skipLoading = false; // * Zet deze op false om de loader te laten zien *
 
 const progressText = document.getElementById("progress-text");
 

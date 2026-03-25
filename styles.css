@@ -47,7 +47,7 @@
 }
 
 body {
-  min-height: 350vh;
+  min-height: 999vh;
   position: relative;
   overflow-x: hidden;
   background-color: black;
@@ -316,7 +316,7 @@ body::after {
   animation-timeline: auto, scroll();
   animation-range:
     normal,
-    30% 100%;
+    30vh 350vh;
   display: grid;
   place-items: center;
   will-change: transform, scale;
@@ -932,4 +932,121 @@ body:has(.star-cb:not(:checked)) .laika {
     transform: translateY(-20px) scale(1.02);
     filter: blur(1px);
   }
+}
+
+/* ===== INFORMATION SECTIONS FROM SCROLLANIMATION.CSS ===== */
+#black-hole-info {
+  opacity: 0;
+  pointer-events: none;
+  background-color: #0b1020; /* Dark space background */
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 300; /* Over everything */
+}
+
+.informationSectionsWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.informationSectionsWrapper section:not(.panel) {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 4rem 8%;
+  align-items: center;
+}
+
+.informationText {
+  max-height: fit-content;
+  background: transparent;
+  flex: 1;
+  max-width: 700px;
+  text-align: center;
+  z-index: 10;
+  height: fit-content;
+}
+
+.missionSection .informationText,
+.corevalueSection .informationText {
+  text-align: left;
+}
+
+.informationSectionsWrapper h2 {
+  font-size: 4em;
+  margin-bottom: 1rem;
+  color: #eb5d34; /* SRON Orange */
+  font-family: var(--font-display);
+}
+
+.informationSectionsWrapper p,
+.informationSectionsWrapper li {
+  font-family: var(--font-data);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.informationSectionsWrapper p {
+  padding: 1em;
+}
+
+.informationSectionsWrapper ul {
+  list-style-type: circle;
+  padding-left: 2rem;
+}
+
+.informationSectionsWrapper section ul > li {
+  margin: 1em 0;
+}
+
+.horizontalContainer {
+  display: flex;
+  width: 200%;
+  height: 100vh;
+  z-index: 10;
+}
+
+.panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.panel:nth-of-type(2) {
+  justify-content: left;
+}
+
+.panel .informationText {
+  max-width: 800px;
+  padding: 2rem;
+  text-align: left;
+}
+
+.panel h2 {
+  font-size: 4em;
+  color: #eb5d34; /* SRON Orange */
+  font-family: var(--font-display);
+  margin-bottom: 1rem;
+}
+
+.panel p,
+.panel li {
+  font-family: var(--font-data);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.placeholderSection {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 8%;
 }
