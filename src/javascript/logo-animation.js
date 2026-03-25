@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth // Making sure the entire canvas covers the entire window
 canvas.height = window.innerHeight
 let particleArray = []; // Will contain all particle objects (size, color and cordinats)
+let isScattered = false;
 
 // Handle mouse cordinats
 const mouse = {
@@ -18,6 +19,11 @@ window.addEventListener('mousemove', function(event){
     mouse.y = event.y;
     mouse.radius = window.innerWidth * 0.11; // Here you can change the radius of the mouse
 })
+
+// Event: add an event to scroll
+window.addEventListener('scroll', function() {
+    isScattered = true; 
+});
 
 // Create a separate canvas for the text to be able to place it in the center
 const textCanvas = document.createElement('canvas');
@@ -52,6 +58,10 @@ class Particle {
         this.baseX = this.x
         this.baseY = this.y
         this.density = (Math.random() * 40) + 5; // Here you can change the speed of the particles avoiding the mouse
+
+        // If scrolling
+        this.scatterX = Math.random() * canvas.width;
+        this.scatterY = Math.random() * canvas.height;
     }
 
     // Draws the particles
@@ -75,22 +85,27 @@ class Particle {
         let DirectionX = forceDirectionX * force * this.density;
         let DirectionY = forceDirectionY * force * this.density;
         
-        // If the particle is within the radius of the mouse, it will be pushed away
-        if (distance < mouse.radius) {
-            this.x -= DirectionX;
-            this.y -= DirectionY;
-        } 
-        
-        // If the particles are no longer inside the radius of the mouse, they will return to their original place
-        else {
-            
-            if(this.x !== this.baseX){
-                let dx = this.x - this.baseX;
-                this.x -= dx/10; // Here you can change the speed of the particles returning to their original place
+        if (isScattered) {
+            this.x += (this.scatterX - this.x) * 0.05;
+            this.y += (this.scatterY - this.y) * 0.05;
+        } else {
+                // If the particle is within the radius of the mouse, it will be pushed away
+            if (distance < mouse.radius) {
+                this.x -= DirectionX;
+                this.y -= DirectionY;
             }
-            if(this.y !== this.baseY){
-                let dy = this.y - this.baseY;
-                this.y -= dy/10; // Here you can change the speed of the particles returning to their original place
+            
+            // If the particles are no longer inside the radius of the mouse, they will return to their original place
+            else {
+                
+                if(this.x !== this.baseX){
+                    let dx = this.x - this.baseX;
+                    this.x -= dx/10; // Here you can change the speed of the particles returning to their original place
+                }
+                if(this.y !== this.baseY){
+                    let dy = this.y - this.baseY;
+                    this.y -= dy/10; // Here you can change the speed of the particles returning to their original place
+                }
             }
         }
     }
@@ -113,14 +128,6 @@ function init () {
                     positionX * 5 + offsetX, // Here you can change the distance between the paritcles
                     positionY * 5 + offsetY // Here you can change the distance between the paritcles
                 )); 
-            }
-
-            onscroll = (event) => { 
-                for (let i = 0; i < 800; i++) {
-                    let x = Math.random() * canvas.width;
-                    let y = Math.random() * canvas.height;
-                    particleArray.push(new Particle(x, y));
-                }
             }
         }
     }
