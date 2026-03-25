@@ -85,11 +85,14 @@ class Particle {
         let DirectionX = forceDirectionX * force * this.density;
         let DirectionY = forceDirectionY * force * this.density;
         
+        // Scatter particles on scroll
         if (isScattered) {
             this.x += (this.scatterX - this.x) * 0.05;
             this.y += (this.scatterY - this.y) * 0.05;
-        } else {
-                // If the particle is within the radius of the mouse, it will be pushed away
+        } 
+        
+        else {
+            // If the particle is within the radius of the mouse, it will be pushed away
             if (distance < mouse.radius) {
                 this.x -= DirectionX;
                 this.y -= DirectionY;
