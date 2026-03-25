@@ -843,3 +843,93 @@ body:has(.star-cb:not(:checked)) .laika {
     scale: 5;
   }
 }
+
+/* ===== BLACK HOLE INFORMATION SECTION ===== */
+#black-hole-info {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 5000; /* Boven alles behalve loader */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  color: var(--surface);
+  font-family: var(--font-data);
+  text-align: center;
+  overflow: hidden;
+}
+
+#black-hole-info .info-content {
+  max-width: 800px;
+  padding: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+#black-hole-info h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: var(--tertiary);
+  text-shadow: 0 0 20px rgba(174, 42, 7, 0.5);
+  letter-spacing: 0.1em;
+}
+
+#black-hole-info p {
+  background: none;
+  background-image: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  width: auto;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  opacity: 1;
+}
+
+#black-hole-info .data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+#black-hole-info .data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#black-hole-info .label {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  letter-spacing: 0.2em;
+}
+
+#black-hole-info .value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--tertiary);
+}
+
+/* Subtiele animatie voor tekst binnen zwarte gat */
+#black-hole-info .info-content {
+  animation: float-in-void 10s ease-in-out infinite alternate;
+}
+
+@keyframes float-in-void {
+  from {
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    transform: translateY(-20px) scale(1.02);
+    filter: blur(1px);
+  }
+}

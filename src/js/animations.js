@@ -49,6 +49,18 @@ gsap.to(viewer, {
   },
 });
 
+// Reveal de "Inside the Black Hole" sectie aan het einde van de scroll
+gsap.to("#black-hole-info", {
+  opacity: 1,
+  pointerEvents: "auto",
+  scrollTrigger: {
+    trigger: "body",
+    start: "bottom 110%", // Iets voor het einde van het scrollen beginnen
+    end: "bottom bottom",
+    scrub: true,
+  },
+});
+
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====
 let typedSequence = "";
 const secretCode = "jedi";
