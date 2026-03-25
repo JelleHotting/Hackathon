@@ -44,7 +44,6 @@
 
   /* ====== 5. Black hole sizing ====== */
   --divSize: 30em;
-
 }
 
 body {
@@ -287,42 +286,49 @@ body::after {
 
 /* Black hole background */
 
-.scene{
-    width: 100dvw;
-    height: 100dvh;
-    background-color: rgb(127 127 127);
-    filter: url("#morphScene");
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    position: fixed;
-    top: 0; 
+.scene {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgb(127 127 127);
+  filter: url("#morphScene");
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  top: 0;
 }
 
 .scene div {
-    width: var(--divSize);
-    height: var(--divSize);
-    background-image: url(/src/images/absoluteMapCone.JPG);
-    border-radius: var(--divSize);
+  width: var(--divSize);
+  height: var(--divSize);
+  background-image: url(/src/images/absoluteMapCone.JPG);
+  border-radius: var(--divSize);
 
-    /* opacity: 0.5; */
-    background-size: contain;
-    overflow: hidden;
+  /* opacity: 0.5; */
+  background-size: contain;
+  overflow: hidden;
 
-    filter: blur(15px);
-    animation: bigSmall 30s linear infinite;
-    display: grid;
-    place-items: center;
+  filter: blur(15px);
+  animation:
+    constantRotate 20s linear infinite,
+    scaleHole linear both;
+  animation-timeline: auto, scroll();
+  animation-range:
+    normal,
+    30% 100%;
+  display: grid;
+  place-items: center;
+  will-change: transform, scale;
 }
 
 .scene div:before {
-    content: " ";
-    width: 80%;
-    height: 80%;
-    border-radius: 100em;
-    display: block;
-    top: 0;
-    background-color: rgb(0 0 0);
+  content: " ";
+  width: 80%;
+  height: 80%;
+  border-radius: 100em;
+  display: block;
+  top: 0;
+  background-color: rgb(0 0 0);
 }
 
 section {
@@ -349,8 +355,6 @@ h1 {
   z-index: 1;
   display: none;
 }
-
-
 
 canvas {
   position: absolute;
@@ -561,7 +565,6 @@ model-viewer {
   transition: opacity 1.2s ease-in-out;
 }
 
-
 .laika {
   width: 200px;
 
@@ -731,7 +734,7 @@ body:has(.star-cb:not(:checked)) .laika {
   position: relative;
   height: 800px;
   color: #feda4a;
-  font-family: var(--font-display), 'Century Gothic', sans-serif;
+  font-family: var(--font-display), "Century Gothic", sans-serif;
   font-size: 300%;
   font-weight: 600;
   letter-spacing: 6px;
@@ -776,7 +779,7 @@ body:has(.star-cb:not(:checked)) .laika {
   color: #feda4a;
   display: block;
   font-size: 1.5em; /* Maak h1 passend in crawl */
-  width: auto;      /* Reset globale h1 width */
+  width: auto; /* Reset globale h1 width */
 }
 
 @keyframes crawl {
@@ -784,7 +787,7 @@ body:has(.star-cb:not(:checked)) .laika {
     top: 0;
     transform: rotateX(20deg) translateZ(0);
   }
-  100% { 
+  100% {
     top: -6000px;
     transform: rotateX(25deg) translateZ(-2500px);
   }
@@ -819,18 +822,23 @@ body:has(.star-cb:not(:checked)) .laika {
   }
 }
 
-@keyframes bigSmall{
-    0%{
-        scale: 0;
-        rotate: 0deg;
-    } 15% {
-        scale: 1;
-        rotate: 180deg;
-    } 85% {
-        scale: 1;
-        rotate: 720deg;
-    } 100% {
-        scale: 0;
-        rotate: 800deg;
-    }
+@keyframes constantRotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes scaleHole {
+  0% {
+    scale: 0;
+  }
+  10% {
+    scale: 1;
+  }
+  100% {
+    scale: 2.5;
+  }
 }

@@ -18,11 +18,9 @@ window.addEventListener("appReady", () => {
       filter: "blur(0px)",
       duration: 2.5,
       ease: "elastic.out(1, 0.7)",
-    }
+    },
   );
 });
-
-
 
 // Model naar het midden van het scherm verplaatsen tijdens de eerste scroll
 gsap.to(viewer, {
@@ -33,24 +31,23 @@ gsap.to(viewer, {
     start: "top top",
     end: "top -75%", // klaar na 75% viewport scrollen
     scrub: 1, // animatie volgt de scroll
-  }
+  },
 });
 
 // "Black-hole-suck" animatie — bestuurd door te scrollen!
 gsap.to(viewer, {
-  scale: 0, 
-  rotation: 1080, 
+  scale: 0,
+  rotation: 1080,
   opacity: 0,
-  filter: "blur(20px)",
+  filter: "blur(0px)",
   ease: "power1.inOut",
   scrollTrigger: {
     trigger: "body",
     start: "top -150%", // start animatie wanneer we anderhalf scherm ver zijn weggescrolld
     end: "bottom bottom", // eindig onderaan de hele document body
     scrub: 1, // de animatie volgt exact je muis/scrollwiel (1 = snelle soepele reactietijd)
-  }
+  },
 });
-
 
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====
 let typedSequence = "";
@@ -60,7 +57,7 @@ const secretCode = "jedi";
 window.addEventListener("keydown", (e) => {
   // Easter egg activatie
   typedSequence += e.key.toLowerCase();
-  
+
   if (typedSequence.length > secretCode.length) {
     typedSequence = typedSequence.slice(-secretCode.length);
   }
@@ -70,7 +67,7 @@ window.addEventListener("keydown", (e) => {
     if (container) {
       // Haal class weg en trigger reflow om de pure-CSS animatie te kunnen herhalen
       container.classList.remove("active");
-      void container.offsetWidth; 
+      void container.offsetWidth;
       container.classList.add("active");
     }
     typedSequence = ""; // reset
@@ -82,7 +79,7 @@ window.addEventListener("keydown", (e) => {
     if (container && container.classList.contains("active")) {
       container.classList.remove("active");
       // Trick om de CSS animatie te resetten: clone en replace
-      const crawl = container.querySelector('.star-wars-crawl');
+      const crawl = container.querySelector(".star-wars-crawl");
       if (crawl) {
         const newCrawl = crawl.cloneNode(true);
         crawl.parentNode.replaceChild(newCrawl, crawl);
@@ -90,4 +87,3 @@ window.addEventListener("keydown", (e) => {
     }
   }
 });
-
