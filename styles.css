@@ -41,20 +41,17 @@
   /* ===== 4. Schaduwen & Diepte ===== */
   --shadow-ambient: 0 8px 32px rgba(23, 27, 41, 0.05); /* 5% op textkleur */
   --shadow-ambient-float: 0 12px 64px rgba(23, 27, 41, 0.06); /* 6% op textkleur */
+
+  /* ====== 5. Black hole sizing ====== */
+  --divSize: 30em;
+
 }
 
 body {
   min-height: 350vh;
   position: relative;
   overflow-x: hidden;
-  background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(57, 75, 143, 0.35),
-      transparent 30%
-    ),
-    radial-gradient(circle at 80% 0%, rgba(24, 117, 160, 0.2), transparent 34%),
-    linear-gradient(180deg, #02030a 0%, #070b1f 45%, #030612 100%);
+  background-color: black;
 }
 
 body::before,
@@ -286,6 +283,46 @@ body::after {
   animation: meteor-path-two 16s linear infinite;
   animation-delay: -6s;
   opacity: 0.75;
+}
+
+/* Black hole background */
+
+.scene{
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgb(127 127 127);
+    filter: url("#morphScene");
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    position: fixed;
+    top: 0; 
+}
+
+.scene div {
+    width: var(--divSize);
+    height: var(--divSize);
+    background-image: url(/src/images/absoluteMapCone.JPG);
+    border-radius: var(--divSize);
+
+    /* opacity: 0.5; */
+    background-size: contain;
+    overflow: hidden;
+
+    filter: blur(15px);
+    animation: bigSmall 30s linear infinite;
+    display: grid;
+    place-items: center;
+}
+
+.scene div:before {
+    content: " ";
+    width: 80%;
+    height: 80%;
+    border-radius: 100em;
+    display: block;
+    top: 0;
+    background-color: rgb(0 0 0);
 }
 
 section {
@@ -780,4 +817,20 @@ body:has(.star-cb:not(:checked)) .laika {
   h1 {
     display: none;
   }
+}
+
+@keyframes bigSmall{
+    0%{
+        scale: 0;
+        rotate: 0deg;
+    } 15% {
+        scale: 1;
+        rotate: 180deg;
+    } 85% {
+        scale: 1;
+        rotate: 720deg;
+    } 100% {
+        scale: 0;
+        rotate: 800deg;
+    }
 }
