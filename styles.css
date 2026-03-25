@@ -316,7 +316,7 @@ h1 {
 
 
 canvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 289;
@@ -524,10 +524,6 @@ model-viewer {
   transition: opacity 1.2s ease-in-out;
 }
 
-model-viewer.fade-out {
-  animation: black-hole-suck 1.5s cubic-bezier(0.64, 0, 0.78, 0) forwards;
-  pointer-events: none;
-}
 
 .laika {
   width: 200px;

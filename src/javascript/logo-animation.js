@@ -17,12 +17,16 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = window.innerWidth * 0.11; // Here you can change the radius of the mouse
+    mouse.radius = window.innerWidth * 0.15; // Here you can change the radius of the mouse
 })
 
 // Event: add an event to scroll
 window.addEventListener('scroll', function() {
-    isScattered = true; 
+    if (window.scrollY > window.innerHeight * 0.05) {
+        isScattered = true; 
+    } else {
+        isScattered = false;
+    }
 });
 
 // Create a separate canvas for the text to be able to place it in the center
@@ -62,11 +66,13 @@ class Particle {
         // If scrolling
         this.scatterX = Math.random() * canvas.width;
         this.scatterY = Math.random() * canvas.height;
+        this.isStar = Math.random() < 0.05; // Only keep 5% of particles as stars
+        this.opacity = 1;
     }
 
     // Draws the particles
     draw(){
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); //position and radius
         ctx.closePath();
@@ -89,6 +95,12 @@ class Particle {
         if (isScattered) {
             this.x += (this.scatterX - this.x) * 0.05;
             this.y += (this.scatterY - this.y) * 0.05;
+            
+            // Fade out particles that are not stars
+            if (!this.isStar) {
+                this.opacity -= 0.05;
+                if (this.opacity < 0) this.opacity = 0;
+            }
         } 
         
         else {
@@ -108,6 +120,12 @@ class Particle {
                 if(this.y !== this.baseY){
                     let dy = this.y - this.baseY;
                     this.y -= dy/10; // Here you can change the speed of the particles returning to their original place
+                }
+                
+                // Restore opacity when returning to original place
+                if (!this.isStar && this.opacity < 1) {
+                    this.opacity += 0.05;
+                    if (this.opacity > 1) this.opacity = 1;
                 }
             }
         }
