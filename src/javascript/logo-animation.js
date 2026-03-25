@@ -114,6 +114,14 @@ function init () {
                     positionY * 5 + offsetY // Here you can change the distance between the paritcles
                 )); 
             }
+
+            onscroll = (event) => { 
+                for (let i = 0; i < 800; i++) {
+                    let x = Math.random() * canvas.width;
+                    let y = Math.random() * canvas.height;
+                    particleArray.push(new Particle(x, y));
+                }
+            }
         }
     }
 }
