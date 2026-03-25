@@ -28,7 +28,8 @@
     />
     <title>SRON</title>
   </head>
-  <img>
+
+  <!-- LOADER + ANIMATED SATELITE -->
     <div class="loader">
       <div class="loader-content">
         <div class="loader-header">
@@ -54,22 +55,26 @@
       <progress value="0" max="100" style="display: none"></progress>
     </div>
 
+<!-- STARS IN BACKGROUND -->
     <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
       <span class="meteor meteor-two"></span>
     </div>
 
-
+<!-- TITLE -->
     <section>
       <h1>NEBULA EXPLORER</h1>
-      <p id="hero-text">Bringing science to space</p>
+      <canvas id="main-canvas"></canvas>
+      <!-- <p id="hero-text">Bringing science to space</p> -->
     </section>
 
+<!-- SPACE DOG -->
     <img
 class="laika"
 src="src/images/laika.png" alt="laika de hond">
   </img>
 
+  <script src="/src/javascript/logo-animation.js"></script>
     <model-viewer
       id="satellite-viewer"
       alt="3d model of a satellite"

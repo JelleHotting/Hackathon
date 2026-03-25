@@ -16,14 +16,14 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = window.innerWidth * 0.15; // Here you can change the radius of the mouse
+    mouse.radius = window.innerWidth * 0.11; // Here you can change the radius of the mouse
 })
 
 // Create a separate canvas for the text to be able to place it in the center
 const textCanvas = document.createElement('canvas');
 const textStyling = textCanvas.getContext('2d');
 
-let fontSize = window.innerWidth * 0.04; // Here you can change the responsive font
+let fontSize = window.innerWidth * 0.03; // Here you can change the responsive font
 
 textCanvas.width = window.innerWidth;
 textCanvas.height = window.innerHeight;
@@ -33,7 +33,12 @@ textStyling.fillStyle = 'white';
 textStyling.font = `${fontSize}px Verdana`; // Here you can change the font size and family. Make sure to change the size and distance of the particles aswell if you do so. 
 textStyling.textAlign = 'center';
 textStyling.textBaseline = 'middle';
-textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2);
+// textStyling.fillText('NABULA Xplorer', textCanvas.width / 2, textCanvas.height / 2);
+
+const lineHeight = fontSize * 1;
+
+textStyling.fillText('NABULA', textCanvas.width / 2, textCanvas.height / 2 - lineHeight / 2); 
+textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2 + lineHeight / 2);
 
 // Calculation of the size of the text
 const textCoordinates = textStyling.getImageData(0, 0, textCanvas.width, textCanvas.height);
@@ -43,7 +48,7 @@ class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = 1; // Here you can change the size per particle
+        this.size = 1.2; // Here you can change the size per particle
         this.baseX = this.x
         this.baseY = this.y
         this.density = (Math.random() * 40) + 5; // Here you can change the speed of the particles avoiding the mouse
@@ -117,12 +122,12 @@ init();
 console.log(particleArray);
 
 // Create an animation loop, reruns the canvas for each frame
-function animate () {
+function animateParticles () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particleArray.length; i++) {
         particleArray[i].draw();
         particleArray[i].update();
     }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateParticles);
 }
-animate();
+animateParticles();
