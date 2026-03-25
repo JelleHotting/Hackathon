@@ -52,7 +52,6 @@
           </div>
         </div>
       </div>
-      <progress value="0" max="100" style="display: none"></progress>
     </div>
 
 <!-- Audio: background music --> 
@@ -68,11 +67,15 @@
     <button id="muteBtn" class="muted" width></button>
 </figure>
     
-<!-- STARS IN BACKGROUND -->
-    <div class="meteor-layer" aria-hidden="true">
+<!-- METEORS IN BACKGROUND -->
+    <!-- <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
       <span class="meteor meteor-two"></span>
-    </div>
+    </div> -->
+
+<div class="scene">
+      <div></div>
+  </div>
 
 <!-- TITLE -->
     <section>
@@ -84,8 +87,10 @@
 <!-- SPACE DOG -->
     <img
 class="laika"
-src="src/images/laika.png" alt="laika de hond">
+src="src/images/laika.gif" alt="laika de hond">
   </img>
+
+  <input type="checkbox" class="star-cb" aria-label="Toggle Laika">
 
   <script src="/src/javascript/logo-animation.js"></script>
     <model-viewer
@@ -96,5 +101,41 @@ src="src/images/laika.png" alt="laika de hond">
       orientation="0deg -90deg 180deg"
     ></model-viewer>
 
+    <!-- 3D model: Meshy. (2026). 3D model van de xplorer satelliet [3D model]. https://www.meshy.ai/workspace -->
+
+    <!-- STAR WARS EASTER EGG CONTAINER -->
+<div id="star-wars-container" class="star-wars-container">
+  <div class="star-wars-fade"></div>
+  <section class="star-wars">
+    <div class="star-wars-crawl">
+      <div class="title">
+        <p>Episode 2030</p>
+        <h2>DE NEBULA-XPLORER</h2>
+      </div>
+      <p>Het universum is gehuld in duisternis en mysterie. Ver in de verre kosmos verslinden gigantische ZWARTE GATEN meedogenloos de materie van de sterren die in hun greep zijn geraakt. Om deze krachtige en gewelddadige processen te begrijpen en de oorsprong van het heelal te ontrafelen, is er een nieuwe hoop: een missie genaamd de NEBULA-Xplorer.</p>
+      
+      <p>Dit is geen gewone missie van de gevestigde orde, maar een rebellie van de nieuwe generatie. Een moedige lichting studenten van universiteiten, hogescholen en mbo's heeft de krachten gebundeld om dit ruimtevaartuig te ontwerpen, te bouwen en te testen. Gecoacht door de meesters van SRON en de Nederlandse industrie, vormen zij de toekomstige vloot van ontdekkingsreizigers in een sector die te lang door een eenzijdige elite werd gedomineerd.</p>
+      
+      <p>De voorbereidingen zijn in volle gang. Rond het jaar 2030 zal de compacte maar krachtige satelliet aan boord van een Falcon 9-raket aan de zwaartekracht van de aarde ontsnappen. Eenmaal in de eindeloze leegte zal zijn innovatieve telescoop, uitgerust met gouden spiegels en ijskoude detectoren, onafgebroken turen naar de helderste röntgenbronnen in het heelal.</p>
+      
+      <p>Terwijl de NEBULA-Xplorer zich opmaakt voor de ultieme reis om de geheimen van de zwaartekracht te ontsluieren, rust de toekomst van de wetenschap veilig in de handen van deze jonge helden....</p>
+    </div>
+  </section>
+</div>
   </body>
+  <svg style="position:absolute; width:0; height:0; overflow:visible;">
+  <defs>
+    <filter id="morphScene" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
+        <feImage result="starMap" href="/src/images/starmap.jpg" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="100%" height="100%"/>
+        <feDisplacementmap 
+        result="blackHoleMorph"
+        in2="SourceGraphic"
+        in="starMap"
+        scale="1.5"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        />
+    </filter>
+  </defs>
+  </svg>
 </html>
