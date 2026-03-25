@@ -73,6 +73,7 @@ header p {
   max-width: 700px;
   text-align: center;
   z-index: 10;
+  height: fit-content;
 }
 
 .missionSection .informationText,
@@ -166,8 +167,8 @@ header p {
 }
 
 .satellite {
-  width: 150px;
-  height: 150px;
+  width: 15vw;
+  min-width: 150px;
   position: absolute;
   pointer-events: none;
   z-index: 9;

@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Satteliet svg wat het pad volgt
     gsap.to(".satellite", {
-      opacity: 1,
       immediateRender: true,
       motionPath: {
         path: "#guide-path",
@@ -80,10 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "none",
       scrollTrigger: {
         trigger: ".informationSectionsWrapper",
-        start: "top top",
+        start: "top center",
         end: "bottom 20%",
-        scrub: 3,
-        markers: true,
+        scrub: 1,
+        markers: false,
+      },
+    });
+
+    // Fade de satelliet uit wanneer deze bij de horizontalContainer komt
+    gsap.to(".satellite", {
+      opacity: 0,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: ".horizontalContainer",
+        start: "top center", // Begint de fade-out als header in beeld komt
+        end: "top top", // Helemaal onzichtbaar zodra we vastpinnen
+        scrub: true,
       },
     });
 
@@ -102,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "+=" + document.querySelector(".horizontalContainer").scrollWidth,
         pin: true,
         scrub: 1,
-        markers: true,
+        markers: false,
       },
     });
 
