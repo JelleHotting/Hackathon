@@ -504,3 +504,9 @@ width: 200px;
 display: none;
 } */
 
+figure {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 500;
+}
