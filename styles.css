@@ -296,6 +296,7 @@ body::after {
   align-content: center;
   position: fixed;
   top: 0;
+  overflow:clip;
 }
 
 .scene div {
@@ -839,6 +840,6 @@ body:has(.star-cb:not(:checked)) .laika {
     scale: 1;
   }
   100% {
-    scale: 2.5;
+    scale: 5;
   }
 }
