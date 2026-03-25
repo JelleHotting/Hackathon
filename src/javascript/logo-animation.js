@@ -43,7 +43,7 @@ textStyling.textBaseline = 'middle';
 
 const lineHeight = fontSize * 1;
 
-textStyling.fillText('NABULA', textCanvas.width / 2, textCanvas.height / 2 - lineHeight / 2); 
+textStyling.fillText('NEBULA', textCanvas.width / 2, textCanvas.height / 2 - lineHeight / 2); 
 textStyling.fillText('Xplorer', textCanvas.width / 2, textCanvas.height / 2 + lineHeight / 2);
 
 // Calculation of the size of the text
