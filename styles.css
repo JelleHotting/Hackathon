@@ -500,9 +500,7 @@ width: 200px;
   }
 }
 
-figure {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 350;
-}
+/* figure {
+display: none;
+} */
+
