@@ -1048,6 +1048,7 @@ body:has(.star-cb:not(:checked)) .laika {
     flex-direction: column;
     width: 100%;
     height: auto;
+    overflow-x: hidden;
   }
 
   .panel {

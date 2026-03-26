@@ -227,7 +227,7 @@ mm.add("(max-width: 768px)", () => {
         scrub: 1.5,
       },
       rotation: 360,
-      x: 200,
+      x: 50,
       opacity: 0,
       scale: 0.2,
     });
