@@ -56,6 +56,19 @@
       </div>
     </div>
 
+<!-- Audio: background music --> 
+<!-- <figure>
+  <audio id="bgMusic" autoplay loop muted src="/src/audio/space-music.mp3" type="audio/mpeg"></audio>
+</figure> -->
+
+<figure>
+    <!-- <audio id="bgMusic" autoplay controls loop title='Space background music'>
+      <source src='/src/audio/idoberg-space-chords-loop-310493.mp3' type='audio/mp3'>
+    </audio> -->
+    <audio id="bgMusic" loop src="/src/audio/space-music.mp3"></audio>
+    <button id="muteBtn" class="muted" width></button>
+</figure>
+    
 <!-- METEORS IN BACKGROUND -->
     <!-- <div class="meteor-layer" aria-hidden="true">
       <span class="meteor meteor-one"></span>
@@ -258,7 +271,6 @@ src="src/images/laika.gif" alt="laika de hond">
       </div>
     </section>
   </body>
-
   <svg style="position:absolute; width:0; height:0; overflow:visible;">
   <defs>
     <filter id="morphScene" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">

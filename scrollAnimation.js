@@ -1,4 +1,4 @@
-/* Gebruikte bronnen van gsap documentatie:
+/* Gebruikte bronnen voor gsap:
 https://gsap.com/docs/v3/
 https://gsap.com/docs/v3/Plugins/ScrollTrigger/
 https://gsap.com/docs/v3/Plugins/ScrollSmoother/
@@ -113,19 +113,20 @@ document.addEventListener("DOMContentLoaded", () => {
           "+=" + document.querySelector(".horizontalContainer").scrollWidth,
         pin: true,
         scrub: 1,
-        markers: false,
       },
     });
 
-    // Text fade in animatie
+    // eerste horizontal panel
     document.fonts.ready.then(() => {
       gsap.utils.toArray(".panel h2, .panel p").forEach((el) => {
         const split = SplitText.create(el, { type: "words" });
         gsap.from(split.words, {
           opacity: 0,
-          duration: 0.5,
-          ease: "sine.out",
-          stagger: 0.05,
+          y: 20,
+          filter: "blur(8px)",
+          stagger: 0.04,
+          duration: 0.6,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: el,
             containerAnimation: horizontalScroll,
@@ -134,6 +135,27 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         });
       });
+
+      // tweede horizontal panel
+      gsap.utils
+        .toArray(".panel:nth-child(2) h2, .panel:nth-child(2) p")
+        .forEach((el) => {
+          const split = SplitText.create(el, { type: "lines" });
+          gsap.from(split.lines, {
+            rotationX: -100,
+            transformOrigin: "50% 50% -160px",
+            opacity: 0,
+            duration: 3,
+            ease: "power3",
+            stagger: 0.25,
+            scrollTrigger: {
+              trigger: el,
+              containerAnimation: horizontalScroll,
+              scrub: 1,
+              start: "left 80%",
+            },
+          });
+        });
     });
   }
 });
