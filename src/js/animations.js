@@ -63,6 +63,20 @@ gsap.to("#black-hole-info", {
 
 // --- Inhoud van scrollAnimation.js (Aangepast voor integratie) ---
 
+/* Gebruikte bronnen voor gsap:
+https://gsap.com/docs/v3/
+
+https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+
+https://gsap.com/docs/v3/Plugins/ScrollSmoother/
+
+https://gsap.com/docs/v3/Plugins/SplitText/
+
+https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/
+
+https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/#accessible-animations-with-prefers-reduced-motion
+*/
+
 // Animatie eerste sectie
 gsap.from(".introSection .informationText", {
   scrollTrigger: {
@@ -208,8 +222,8 @@ mm.add("(max-width: 768px)", () => {
     gsap.from(panel.querySelectorAll("h2, p"), {
       scrollTrigger: {
         trigger: panel,
-        start: "top center",
-        end: "top 50px",
+        start: "top 80%",
+        end: "top 30%",
         scrub: 1.5,
       },
       rotation: 360,
