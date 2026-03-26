@@ -302,7 +302,7 @@ body::after {
 .scene div {
   width: var(--divSize);
   height: var(--divSize);
-  background-image: url(/src/images/absoluteMapCone.JPG);
+  background-image: url("src/images/absoluteMapCone.JPG");
   border-radius: var(--divSize);
 
   /* opacity: 0.5; */
@@ -644,11 +644,11 @@ figure {
 }
 
 #muteBtn.muted::before {
-  content: url(src/images/muted.svg);
+  content: url("src/images/muted.svg");
 }
 
 #muteBtn.unmuted::before {
-  content: url(src/images/unmuted.svg);
+  content: url("src/images/unmuted.svg");
 }
 
 button {
@@ -901,6 +901,7 @@ body:has(.star-cb:not(:checked)) .laika {
 .informationSectionsWrapper {
   position: relative;
   width: 100%;
+  background-color: #0b1020;
 }
 
 .informationSectionsWrapper section:not(.panel) {
