@@ -157,13 +157,16 @@ const horizontalScroll = gsap.to(".horizontalContainer", {
 
 // Text fade in animatie voor de panels
 document.fonts.ready.then(() => {
-  gsap.utils.toArray(".panel h2, .panel p").forEach((el) => {
+  // eerste horizontal panel
+  gsap.utils.toArray(".panel:nth-child(1) h2, .panel:nth-child(1) p").forEach((el) => {
     const split = new SplitText(el, { type: "words" });
     gsap.from(split.words, {
       opacity: 0,
-      duration: 0.5,
-      ease: "sine.out",
-      stagger: 0.05,
+      y: 20,
+      filter: "blur(8px)",
+      stagger: 0.04,
+      duration: 0.6,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: el,
         containerAnimation: horizontalScroll,
@@ -172,6 +175,27 @@ document.fonts.ready.then(() => {
       },
     });
   });
+
+  // tweede horizontal panel
+  gsap.utils
+    .toArray(".panel:nth-child(2) h2, .panel:nth-child(2) p")
+    .forEach((el) => {
+      const split = new SplitText(el, { type: "lines" });
+      gsap.from(split.lines, {
+        rotationX: -100,
+        transformOrigin: "50% 50% -160px",
+        opacity: 0,
+        duration: 3,
+        ease: "power3",
+        stagger: 0.25,
+        scrollTrigger: {
+          trigger: el,
+          containerAnimation: horizontalScroll,
+          scrub: 1,
+          start: "left 80%",
+        },
+      });
+    });
 });
 
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====
