@@ -3,7 +3,9 @@ https://gsap.com/docs/v3/
 https://gsap.com/docs/v3/Plugins/ScrollTrigger/
 https://gsap.com/docs/v3/Plugins/ScrollSmoother/
 https://gsap.com/docs/v3/Plugins/SplitText/
+https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/
 https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/#accessible-animations-with-prefers-reduced-motion
+
 */
 
 // GSAP plugins registeren
