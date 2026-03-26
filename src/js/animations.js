@@ -158,23 +158,25 @@ const horizontalScroll = gsap.to(".horizontalContainer", {
 // Text fade in animatie voor de panels
 document.fonts.ready.then(() => {
   // eerste horizontal panel
-  gsap.utils.toArray(".panel:nth-child(1) h2, .panel:nth-child(1) p").forEach((el) => {
-    const split = new SplitText(el, { type: "words" });
-    gsap.from(split.words, {
-      opacity: 0,
-      y: 20,
-      filter: "blur(8px)",
-      stagger: 0.04,
-      duration: 0.6,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: el,
-        containerAnimation: horizontalScroll,
-        toggleActions: "play none none reset",
-        start: "left 80%",
-      },
+  gsap.utils
+    .toArray(".panel:nth-child(1) h2, .panel:nth-child(1) p")
+    .forEach((el) => {
+      const split = new SplitText(el, { type: "words" });
+      gsap.from(split.words, {
+        opacity: 0,
+        y: 20,
+        filter: "blur(8px)",
+        stagger: 0.04,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          containerAnimation: horizontalScroll,
+          toggleActions: "play none none reset",
+          start: "left 80%",
+        },
+      });
     });
-  });
 
   // tweede horizontal panel
   gsap.utils
@@ -201,6 +203,8 @@ document.fonts.ready.then(() => {
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====
 let typedSequence = "";
 const secretCode = "jedi";
+const starWarsAudio = new Audio("src/audio/starwars-theme.mp3");
+const bgMusic = document.getElementById("bgMusic");
 
 // Bron (APA): Hotting, J. (z.d.). AboutMeWebsite [Broncode]. GitHub. https://github.com/JelleHotting/AboutMeWebsite/blob/main/script.js
 window.addEventListener("keydown", (e) => {
@@ -218,6 +222,15 @@ window.addEventListener("keydown", (e) => {
       container.classList.remove("active");
       void container.offsetWidth;
       container.classList.add("active");
+
+      // Speel audio af
+      starWarsAudio.currentTime = 0;
+      starWarsAudio.play().catch((err) => console.log("Audio play failed:", err));
+
+      // Pauzeer achtergrondmuziek indien deze speelt
+      if (bgMusic && !bgMusic.paused) {
+        bgMusic.pause();
+      }
     }
     typedSequence = ""; // reset
   }
@@ -227,6 +240,15 @@ window.addEventListener("keydown", (e) => {
     const container = document.getElementById("star-wars-container");
     if (container && container.classList.contains("active")) {
       container.classList.remove("active");
+
+      // Stop Star Wars audio
+      starWarsAudio.pause();
+      starWarsAudio.currentTime = 0;
+
+      if (bgMusic && bgMusic.paused && !bgMusic.muted) {
+        bgMusic.play().catch((err) => console.log("BG music resume failed:", err));
+      }
+
       // Trick om de CSS animatie te resetten: clone en replace
       const crawl = container.querySelector(".star-wars-crawl");
       if (crawl) {
@@ -240,4 +262,4 @@ window.addEventListener("keydown", (e) => {
 // Bron: https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
-}
+};
