@@ -644,11 +644,11 @@ figure {
 }
 
 #muteBtn.muted::before {
-  content: url(/src/images/muted.svg);
+  content: url(src/images/muted.svg);
 }
 
 #muteBtn.unmuted::before {
-  content: url(/src/images/unmuted.svg);
+  content: url(src/images/unmuted.svg);
 }
 
 button {
