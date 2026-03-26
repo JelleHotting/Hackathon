@@ -989,7 +989,6 @@ body:has(.star-cb:not(:checked)) .laika {
 }
 
 .panel h2 {
-  font-size: 4em;
   color: #eb5d34; /* SRON Orange */
   font-family: var(--font-display);
   margin-bottom: 1rem;
