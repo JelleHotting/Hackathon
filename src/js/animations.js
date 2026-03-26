@@ -137,67 +137,87 @@ gsap.to(".satellite", {
   },
 });
 
-// Horizontal scroll container
-const horizontalScroll = gsap.to(".horizontalContainer", {
-  x: () =>
-    -(
-      document.querySelector(".horizontalContainer").scrollWidth -
-      window.innerWidth
-    ),
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".horizontalContainer",
-    start: "top top",
-    end: () =>
-      "+=" + document.querySelector(".horizontalContainer").scrollWidth,
-    pin: true,
-    scrub: 1,
-  },
+// Gsap methode van responsiveness
+const mm = gsap.matchMedia();
+
+mm.add("(min-width: 769px)", () => {
+  const horizontalScroll = gsap.to(".horizontalContainer", {
+    x: () =>
+      -(
+        document.querySelector(".horizontalContainer").scrollWidth -
+        window.innerWidth
+      ),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".horizontalContainer",
+      start: "top top",
+      end: () =>
+        "+=" + document.querySelector(".horizontalContainer").scrollWidth,
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  document.fonts.ready.then(() => {
+    gsap.utils
+      .toArray(".panel:nth-child(1) h2, .panel:nth-child(1) p")
+      .forEach((el) => {
+        const split = new SplitText(el, { type: "words" });
+        gsap.from(split.words, {
+          opacity: 0,
+          y: 20,
+          filter: "blur(8px)",
+          stagger: 0.04,
+          duration: 0.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            containerAnimation: horizontalScroll,
+            toggleActions: "play none none reset",
+            start: "left 80%",
+          },
+        });
+      });
+
+    gsap.utils
+      .toArray(".panel:nth-child(2) h2, .panel:nth-child(2) p")
+      .forEach((el) => {
+        const split = new SplitText(el, { type: "lines" });
+        gsap.from(split.lines, {
+          rotationX: -100,
+          transformOrigin: "50% 50% -160px",
+          opacity: 0,
+          duration: 3,
+          ease: "power3",
+          stagger: 0.25,
+          scrollTrigger: {
+            trigger: el,
+            containerAnimation: horizontalScroll,
+            scrub: 1,
+            start: "left 80%",
+          },
+        });
+      });
+  });
 });
 
-// Text fade in animatie voor de panels
-document.fonts.ready.then(() => {
-  // eerste horizontal panel
-  gsap.utils
-    .toArray(".panel:nth-child(1) h2, .panel:nth-child(1) p")
-    .forEach((el) => {
-      const split = new SplitText(el, { type: "words" });
-      gsap.from(split.words, {
-        opacity: 0,
-        y: 20,
-        filter: "blur(8px)",
-        stagger: 0.04,
-        duration: 0.6,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          containerAnimation: horizontalScroll,
-          toggleActions: "play none none reset",
-          start: "left 80%",
-        },
-      });
+// Op mobiel geen horizontale scroll
+mm.add("(max-width: 768px)", () => {
+  gsap.utils.toArray(".panel").forEach((panel) => {
+    gsap.from(panel.querySelectorAll("h2, p"), {
+      scrollTrigger: {
+        trigger: panel,
+        start: "top center",
+        end: "top 50px",
+        scrub: 1.5,
+      },
+      rotation: 360,
+      x: 200,
+      opacity: 0,
+      scale: 0.2,
     });
-
-  // tweede horizontal panel
-  gsap.utils
-    .toArray(".panel:nth-child(2) h2, .panel:nth-child(2) p")
-    .forEach((el) => {
-      const split = new SplitText(el, { type: "lines" });
-      gsap.from(split.lines, {
-        rotationX: -100,
-        transformOrigin: "50% 50% -160px",
-        opacity: 0,
-        duration: 3,
-        ease: "power3",
-        stagger: 0.25,
-        scrollTrigger: {
-          trigger: el,
-          containerAnimation: horizontalScroll,
-          scrub: 1,
-          start: "left 80%",
-        },
-      });
-    });
+  });
 });
 
 // ===== EASTER EGG: TYP "JEDI" VOOR STAR WARS =====
@@ -225,7 +245,9 @@ window.addEventListener("keydown", (e) => {
 
       // Speel audio af
       starWarsAudio.currentTime = 0;
-      starWarsAudio.play().catch((err) => console.log("Audio play failed:", err));
+      starWarsAudio
+        .play()
+        .catch((err) => console.log("Audio play failed:", err));
 
       // Pauzeer achtergrondmuziek indien deze speelt
       if (bgMusic && !bgMusic.paused) {
@@ -246,7 +268,9 @@ window.addEventListener("keydown", (e) => {
       starWarsAudio.currentTime = 0;
 
       if (bgMusic && bgMusic.paused && !bgMusic.muted) {
-        bgMusic.play().catch((err) => console.log("BG music resume failed:", err));
+        bgMusic
+          .play()
+          .catch((err) => console.log("BG music resume failed:", err));
       }
 
       // Trick om de CSS animatie te resetten: clone en replace

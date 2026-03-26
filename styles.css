@@ -920,6 +920,7 @@ body:has(.star-cb:not(:checked)) .laika {
   max-width: 700px;
   z-index: 10;
   height: fit-content;
+  background: #0b1020;
 }
 
 .missionSection .informationText,
@@ -928,7 +929,7 @@ body:has(.star-cb:not(:checked)) .laika {
 }
 
 .informationSectionsWrapper h2 {
-  font-size: 4em;
+  font-size: clamp(3rem, 4vw, 5rem);
   margin-bottom: 1rem;
   color: #eb5d34; /* SRON Orange */
   font-family: var(--font-display);
@@ -1039,6 +1040,21 @@ body:has(.star-cb:not(:checked)) .laika {
 
 .link-arrow:hover {
   opacity: 0.7;
+}
+
+/* Kleinere schermen horizontale scroll uit */
+@media (max-width: 768px) {
+  .horizontalContainer {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .panel {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+  }
 }
 
 #guide-svg {
