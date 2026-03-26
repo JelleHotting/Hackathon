@@ -62,7 +62,7 @@
 
 <!-- Audio: background music --> 
 <figure>
-    <audio id="bgMusic" loop src="/src/audio/space-music.mp3"></audio>
+    <audio id="bgMusic" loop src="src/audio/space-music.mp3"></audio>
     <button id="muteBtn" class="muted" width></button>
 </figure>
     
@@ -91,7 +91,7 @@ src="src/images/laika.gif" alt="laika de hond">
 
   <input type="checkbox" class="star-cb" aria-label="Toggle Laika">
 
-  <script src="/src/javascript/logo-animation.js"></script>
+  <script src="src/javascript/logo-animation.js"></script>
     <model-viewer
       id="satellite-viewer"
       alt="3d model of a satellite"
@@ -267,11 +267,10 @@ src="src/images/laika.gif" alt="laika de hond">
         </div>
       </div>
     </section>
-  </body>
-  <svg style="position:absolute; width:0; height:0; overflow:visible;">
+      <svg style="position:absolute; width:0; height:0; overflow:visible;">
   <defs>
     <filter id="morphScene" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
-        <feImage result="starMap" href="/src/images/starmap.jpg" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="100%" height="100%"/>
+        <feImage result="starMap" href="src/images/starmap.jpg" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="100%" height="100%"/>
         <feDisplacementmap 
         result="blackHoleMorph"
         in2="SourceGraphic"
@@ -283,4 +282,6 @@ src="src/images/laika.gif" alt="laika de hond">
     </filter>
   </defs>
   </svg>
+  </body>
+
 </html>
