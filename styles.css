@@ -44,7 +44,6 @@
 
   /* ====== 5. Black hole sizing ====== */
   --divSize: 30em;
-
 }
 
 body {
@@ -297,7 +296,7 @@ body::after {
   align-content: center;
   position: fixed;
   top: 0;
-  overflow:clip;
+  overflow: clip;
 }
 
 .scene div {
@@ -649,26 +648,32 @@ figure {
 }
 
 #muteBtn.unmuted::before {
-content: url(/src/images/unmuted.svg);
+  content: url(/src/images/unmuted.svg);
 }
 
 button {
-cursor: pointer;
-box-sizing: border-box;
-padding: 1rem;
-background: linear-gradient(-75deg,rgba(255, 255, 255, 0.05),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.05));
-border-radius: 10rem;
-box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
-  inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
-  0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
-  0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
-  0 0 0 0 rgba(255, 255, 255, 1);
-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-transition:.2s ease-in-out;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-radius: 10rem;
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+    0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
+    0 0 0 0 rgba(255, 255, 255, 1);
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  transition: 0.2s ease-in-out;
 }
 
 button:hover {
-scale: 1.1;
+  scale: 1.1;
 }
 /* Star Checkbox Toggle */
 .star-cb {
@@ -912,7 +917,6 @@ body:has(.star-cb:not(:checked)) .laika {
   background: transparent;
   flex: 1;
   max-width: 700px;
-  text-align: center;
   z-index: 10;
   height: fit-content;
 }
@@ -1064,18 +1068,21 @@ body:has(.star-cb:not(:checked)) .laika {
   pointer-events: none;
 }
 
-@keyframes bigSmall{
-    0%{
-        scale: 0;
-        rotate: 0deg;
-    } 15% {
-        scale: 1;
-        rotate: 180deg;
-    } 85% {
-        scale: 1;
-        rotate: 720deg;
-    } 100% {
-        scale: 0;
-        rotate: 800deg;
-    }
+@keyframes bigSmall {
+  0% {
+    scale: 0;
+    rotate: 0deg;
+  }
+  15% {
+    scale: 1;
+    rotate: 180deg;
+  }
+  85% {
+    scale: 1;
+    rotate: 720deg;
+  }
+  100% {
+    scale: 0;
+    rotate: 800deg;
+  }
 }
