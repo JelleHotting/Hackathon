@@ -4,45 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Libraries -->
-    <!-- Model-Viewer -->
+    <!-- 3D Model Weergave -->
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"
     ></script>
+    <script defer src="src/js/modelviewer.js"></script>
 
-    <script defer src="src/javascript/modelviewer.js"></script>
+    <!-- GSAP + ScrollTrigger Animatie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/SplitText.min.js"></script>
+    <script defer src="src/js/animations.js"></script>
 
-    <!-- Styles -->
+    <!-- Stijlen -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Fonts -->
+    <!-- Lettertypes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <title>SRON</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="src/images/favicon-1/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="src/images/favicon-1/favicon.svg" />
+    <title>Interstellar</title>
   </head>
-  <body>
-<div class="loader">
 
-<p>Loading...</p>
-
-<progress value="0" max="100"></progress>
-
-</div>
-
-    <div class="meteor-layer" aria-hidden="true">
-      <span class="meteor meteor-one"></span>
-      <span class="meteor meteor-two"></span>
+  <!-- LOADER + ANIMATED SATELITE -->
+    <div class="loader">
+      <div class="loader-content">
+        <div class="loader-header">
+          <p>SYS. MODE: SUN ACQUISITION</p>
+          <p>KSAT GROUND STATION: CONNECTED</p>
+        </div>
+        <div class="loader-center">
+          <h2 id="progress-text" class="progress-large">0%</h2>
+        </div>
+        <div class="loader-footer">
+          <div class="loader-logs">
+            <p>> BOOTING SIRIUS OBC & TCM...</p>
+            <p>> ALIGNING ST-16HV STAR TRACKERS...</p>
+            <p class="highlight">> COOLING FASTSDD DETECTORS TO -35°C...</p>
+          </div>
+          <div class="loader-status">
+            <p>
+              AWAITING X-RAY PHOTON DETECTION...<span class="cursor"></span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
+<!-- Audio: background music --> 
+<figure>
+    <audio id="bgMusic" loop src="/src/audio/space-music.mp3"></audio>
+    <button id="muteBtn" class="muted" width></button>
+</figure>
+    
+<!-- METEORS IN BACKGROUND -->
+    <!-- <div class="meteor-layer" aria-hidden="true">
+      <span class="meteor meteor-one"></span>
+      <span class="meteor meteor-two"></span>
+    </div> -->
+
+<div class="scene">
+      <div></div>
+  </div>
+
+<!-- TITLE -->
     <section>
-    <h1>SRON</h1>
-    <p>Bringing science to space</p>
+      <h1>NEBULA EXPLORER</h1>
+      <canvas id="main-canvas"></canvas>
+      <!-- <p id="hero-text">Bringing science to space</p> -->
     </section>
 
+<!-- SPACE DOG -->
+    <img
+class="laika"
+src="src/images/laika.gif" alt="laika de hond">
+  </img>
+
+  <input type="checkbox" class="star-cb" aria-label="Toggle Laika">
+
+  <script src="/src/javascript/logo-animation.js"></script>
     <model-viewer
       id="satellite-viewer"
       alt="3d model of a satellite"
@@ -51,5 +100,187 @@
       orientation="0deg -90deg 180deg"
     ></model-viewer>
 
+    <!-- 3D model: Meshy. (2026). 3D model van de xplorer satelliet [3D model]. https://www.meshy.ai/workspace -->
+
+    <!-- STAR WARS EASTER EGG CONTAINER -->
+<div id="star-wars-container" class="star-wars-container">
+  <div class="star-wars-fade"></div>
+  <section class="star-wars">
+    <div class="star-wars-crawl">
+      <div class="title">
+        <p>Episode 2030</p>
+        <h2>DE NEBULA-XPLORER</h2>
+      </div>
+      <p>Het universum is gehuld in duisternis en mysterie. Ver in de verre kosmos verslinden gigantische ZWARTE GATEN meedogenloos de materie van de sterren die in hun greep zijn geraakt. Om deze krachtige en gewelddadige processen te begrijpen en de oorsprong van het heelal te ontrafelen, is er een nieuwe hoop: een missie genaamd de NEBULA-Xplorer.</p>
+      
+      <p>Dit is geen gewone missie van de gevestigde orde, maar een rebellie van de nieuwe generatie. Een moedige lichting studenten van universiteiten, hogescholen en mbo's heeft de krachten gebundeld om dit ruimtevaartuig te ontwerpen, te bouwen en te testen. Gecoacht door de meesters van SRON en de Nederlandse industrie, vormen zij de toekomstige vloot van ontdekkingsreizigers in een sector die te lang door een eenzijdige elite werd gedomineerd.</p>
+      
+      <p>De voorbereidingen zijn in volle gang. Rond het jaar 2030 zal de compacte maar krachtige satelliet aan boord van een Falcon 9-raket aan de zwaartekracht van de aarde ontsnappen. Eenmaal in de eindeloze leegte zal zijn innovatieve telescoop, uitgerust met gouden spiegels en ijskoude detectoren, onafgebroken turen naar de helderste röntgenbronnen in het heelal.</p>
+      
+      <p>Terwijl de NEBULA-Xplorer zich opmaakt voor de ultieme reis om de geheimen van de zwaartekracht te ontsluieren, rust de toekomst van de wetenschap veilig in de handen van deze jonge helden....</p>
+    </div>
+  </section>
+</div>
+<!-- BLACK HOLE INFORMATION SECTION -->
+    <section id="black-hole-info">
+      <div class="informationSectionsWrapper">
+        <section class="introSection">
+          <div class="informationText">
+            <h2>NEBULA – Xplorer</h2>
+            <p>
+              NEBULA – Xplorer stands for “Netherlands Educational Satellite for
+              Exploration of Binary-Linked Astrophysics – X-ray Observer”. About
+              400 students will join SRON, 14 Dutch educational institutions and
+              many industrial partners in developing this space mission from
+              start to finish, led by scientists and engineers.
+            </p>
+          </div>
+        </section>
+
+        <section class="missionSection">
+          <div class="informationText">
+            <h2>Our mission</h2>
+            <p>
+              The mission has two goals. The scientific goal is to better
+              understand how a black hole captures material from a companion
+              star. The educational goal is for students from Dutch educational
+              institutions to experience first hand how to build a space mission
+              from the ground up. SRON is leading the NEBULA – Xplorer mission,
+              contributing to a new generation of scientists, designers and
+              technicians for Dutch space research.
+            </p>
+          </div>
+        </section>
+
+        <section class="corevalueSection">
+          <div class="informationText">
+            <h2>Core Values</h2>
+            <ul>
+              <li>Collaboration: We achieve more together as a team</li>
+              <li>
+                Inclusion: We respect each other and embrace our differences
+              </li>
+              <li>
+                Diversity: We seek out a variety in perspective, experiences,
+                and background
+              </li>
+              <li>
+                Ambition: We strive for the best, in ourselves and in our
+                mission
+              </li>
+              <li>
+                Resilience: We embrace our problems as learning opportunities
+              </li>
+              <li>
+                Curiosity: We desire to explore, question, and understand the
+                unknown
+              </li>
+            </ul>
+          </div>
+        </section>
+        
+        <div class="horizontalContainer">
+          <section class="panel">
+            <div class="informationText">
+              <h2>The science</h2>
+              <p>
+                Many of the brightest objects in the Universe are X-ray
+                binaries. These are combinations of an extremely compact object,
+                such as a black hole or neutron star, and a companion star. Over
+                time, the compact object extracts matter from its companion
+                star. This releases lots of energy through a jet. Scientists do
+                not yet fully understand this process. Especially the nature of
+                the stream of matter right next to the black hole remains a big
+                mystery.
+              </p>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="informationText">
+              <h2>Observation</h2>
+              <p>
+                NEBULA-Xplorer will investigate how jets form and how X-ray
+                binaries evolve. It will observe these objects for long periods
+                of time to see how their emission varies on time scales from
+                milliseconds to weeks. This long observation time makes it
+                possible to combine X-ray activity with data from other
+                wavelengths from other telescopes.
+              </p>
+            </div>
+          </section>
+        </div>
+        
+        <section class="participateSection">
+          <div class="informationText">
+            <h2>Join the NEBULA – Xplorer Mission</h2>
+            <p>
+              You will be supported by SRON in designing, building and testing
+              the camera, electronics and housing. You will also receive
+              coaching from your educational institute and industry partners
+              within the project. NEBULA – Xplorer is developed in close
+              cooperation with the Dutch space industry, which provides the
+              technical facilities to produce and test the various components.
+              Interested in participating? For students from Dutch educational
+              institutions, the following assignments are available in the
+              coming year as part of the NEBULA – Xplorer mission:
+            </p>
+            <ul>
+              <li>Development of a structural-thermal model of the camera</li>
+              <li>Development of the camera’s readout electronics</li>
+              <li>Development of the camera’s signal processing system</li>
+              <li>Research into alternative launch platforms</li>
+              <li>
+                Research into mechanical, optical, and electronic test systems
+              </li>
+              <li>Research into materials and processes</li>
+            </ul>
+            <p>
+              If you want to participate, please fill out the
+              <a
+                href="https://werkenbijsron.nl/en/internship-and-graduation/"
+                class="link-arrow"
+              >
+                internship form →
+              </a>
+            </p>
+          </div>
+        </section>
+        
+        <!-- getekend path, kan je customizen in figma -->
+        <div class="pathContainer">
+          <svg
+            id="guide-svg"
+            viewBox="0 0 100 300"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="guide-path"
+              d="M50.0001 0V40C10.0001 90 55.5 122 50.0001 140L40 160C20 190 74 231.5 50 260L50.0001 300"
+              fill="none"
+              stroke="var(--sronOrange)"
+              stroke-width="0"
+              stroke-dasharray="3 3"
+            />
+          </svg>
+          <img class="satellite" src="sattelite.svg" alt="satellite" />
+        </div>
+      </div>
+    </section>
   </body>
+  <svg style="position:absolute; width:0; height:0; overflow:visible;">
+  <defs>
+    <filter id="morphScene" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
+        <feImage result="starMap" href="/src/images/starmap.jpg" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="100%" height="100%"/>
+        <feDisplacementmap 
+        result="blackHoleMorph"
+        in2="SourceGraphic"
+        in="starMap"
+        scale="1.5"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        />
+    </filter>
+  </defs>
+  </svg>
 </html>
